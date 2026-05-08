@@ -1,8 +1,12 @@
-# .config files
-ln -s ~/.myconfig/nvim ~/.config/nvim
-ln -s ~/.myconfig/alacritty ~/.config/alacritty
-ln -s ~/.myconfig/starship.toml ~/.config/starship.toml
-ln -s ~/.myconfig/tmux ~/.config/tmux
+#!/usr/bin/env bash
 
-# $HOME files
-ln -s ~/.myconfig/.bashrc ~/.bashrc
+set -e
+
+if ! command -v stow >/dev/null 2>&1; then
+    echo "Error: GNU Stow is not installed."
+    exit 1
+fi
+
+cd "$(dirname "$0")"
+
+stow home
